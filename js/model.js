@@ -3,7 +3,7 @@ const LOCAL_STORAGE_KEY = 'tasks';
 export default class OrderModel {
 
     constructor() {
-        this.orders = [];
+        this.orders = this.getFromStorage();
     }
 
     // --------------------------------
@@ -34,12 +34,24 @@ export default class OrderModel {
         return newOrder;
     }
 
+    // --------------------------------
+    // Получение заявки из localStorage
+    // --------------------------------
+    getFromStorage() {
+        let dataFromStorage = localStorage.getItem(LOCAL_STORAGE_KEY);
+
+        if (dataFromStorage) {
+            return JSON.parse(dataFromStorage);
+        } else {
+            return [];
+        }
+    }
+
 
     // --------------------------------
     // Добавление заявки в localStorage
     // --------------------------------
     setToStorage() {
-        console.log(this.orders)
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(this.orders))
     }
 
