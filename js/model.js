@@ -6,6 +6,10 @@ export default class OrderModel {
         this.orders = this.getFromStorage();
     }
 
+    getAll() {
+        return this.getFromStorage();
+    }
+
     // --------------------------------
     // Добавление заявки в модель
     // --------------------------------
