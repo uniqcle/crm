@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<title>02 - Таблица с заявками</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/main.css" />
+		<link
+			href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&amp;subset=cyrillic-ext"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap&subset=cyrillic-ext"
+			rel="stylesheet"
+		/>
+	</head>
+
+	<body class="with-nav body--dashboard">
+		<!-- Навигация по проекту -->
+		<nav class="project-nav">
+			<div class="project-nav__links-wrapper">
+				<a href="index.html">Форма добавления заявок</a>
+				<a href="table.html">Таблица с заявками</a>
+				<a href="edit.html">Редактирование заявки</a>
+			</div>
+		</nav>
+
+		<!-- left-panel -->
+		<div class="left-panel blue-skin">
+			<!-- Logo -->
+			<div class="left-panel__logo">
+				<div class="left-panel__logo-title">CRM заявки</div>
+				<div class="left-panel__logo-subtitle">учебный проект webcademy</div>
+			</div>
+			<!-- // Logo -->
+			<!-- User -->
+			<div class="left-panel__user clearfix">
+				<div class="left-panel__user-photo">
+					<img src="img/avatars/avatar-128.jpg" alt="Avatar" />
+				</div>
+				<div class="left-panel__user-name">Петр <br />Васильевич</div>
+			</div>
+			<!-- // User -->
+			<!-- Navigation 1 -->
+			<div class="left-panel__navigation">
+				<div class="left-panel__navigation-title">Заявки</div>
+				<ul>
+					<li><a data-value="all" data-role="left-status" href="#" class="active">Все вместе</a></li>
+					<li><a data-value="new" data-role="left-status" href="#" >Новые<div class="badge" id="badge-new">12</div></a></li>
+					<li><a data-value="inwork" data-role="left-status" href="#">В работе</a></li>
+					<li><a data-value="complete" data-role="left-status" href="#">Завершенные</a></li>
+				</ul>
+			</div>
+			<!-- // Navigation 1 -->
+
+		</div>
+		<!-- // left-panel -->
+
+		<!-- main-wrapper -->
+		<div class="main-wrapper">
+			<div class="container-fluid">
+				<div class="admin-heading-1">Все заявки</div>
+
+				<form action="">
+					<!-- <div class="form-row"> -->
+					<div class="row mb-3 justify-content-start">
+						<!-- Col -->
+						<div class="col">
+							<div id="topStatusBar" class="btn-group" role="group" aria-label="...">
+								<a href="#" class="btn btn-light" data-value="all">Все</a>
+								<a href="#" class="btn btn-light" data-value="new">Новые</a>
+								<a href="#" class="btn btn-light" data-value="inwork">В работе</a>
+								<a href="#" class="btn btn-light" data-value="complete">Завершенные</a>
+							</div>
+						</div>
+						<!-- // Col -->
+						<!-- Col -->
+						<div class="col">
+							<select class="custom-select" id="productSelect">
+								<option value="all" selected>Все продукты</option>
+								<option value="course-html">Курс по верстке</option>
+								<option value="course-js">Курс по JavaScript</option>
+								<option value="course-vue">Курс по VUE JS</option>
+								<option value="course-php">Курс по PHP</option>
+								<option value="course-wordpress">Курс по WordPress</option>
+							</select>
+						</div>
+						<!-- // Col -->
+					</div>
+				</form>
+
+				<table class="table fs-14">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>дата</th>
+							<th>продукт</th>
+							<th>имя</th>
+							<th>email</th>
+							<th>телефон</th>
+							<th>статус</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody id="tbody">
+						<tr>
+							<th scope="row">1</th>
+							<td>01.04.2020</td>
+							<td>Курс по верстке</td>
+							<td>Петр Сергеевич</td>
+							<td>info@inbox.ru</td>
+							<td>+7 (909) 77-55-777</td>
+							<td>
+								<div class="badge badge-pill badge-danger">Новый</div>
+							</td>
+							<td>
+								<a href="edit.html">Редактировать</a>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">2</th>
+							<td>01.04.2020</td>
+							<td>Курс по верстке</td>
+							<td>Василий Петрович</td>
+							<td>info@gmail.ru</td>
+							<td>+7 (909) 77-55-777</td>
+							<td>
+								<div class="badge badge-pill badge-warning">В работе</div>
+							</td>
+							<td>
+								<a href="edit.html">Редактировать</a>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">1</th>
+							<td>01.04.2020</td>
+							<td>Курс по верстке</td>
+							<td>Николай Владимирович</td>
+							<td>info@mail.ru</td>
+							<td>+7 (909) 77-55-777</td>
+							<td>
+								<div class="badge badge-pill badge-success">Завершенный</div>
+							</td>
+							<td>
+								<a href="edit.html">Редактировать</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- // main-wrapper -->
+
+		<!-- Модель -->
+		<script src="./js/model.js"></script>
+
+		<!-- Таблица -->
+		<script src="./js/table/table.view.js"></script>
+		<script src="./js/table/table.controller.js"></script>
+
+	</body>
+</html>

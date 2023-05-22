@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<title>03 - Редактировать заявку</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/main.css" />
+
+		<link
+			href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&amp;subset=cyrillic-ext"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap&subset=cyrillic-ext"
+			rel="stylesheet"
+		/>
+	</head>
+
+	<body class="with-nav">
+		<!-- Навигация по проекту -->
+		<nav class="project-nav">
+			<div class="project-nav__links-wrapper">
+				<a href="index.html">Форма добавления заявок</a>
+				<a href="table.html">Таблица с заявками</a>
+				<a href="edit.html">Редактирование заявки</a>
+			</div>
+		</nav>
+
+		<!-- main-wrapper -->
+		<div class="form-wrapper">
+			<div class="container-fluid">
+				<!-- row -->
+				<div class="row justify-content-between align-items-center">
+					<div class="col">
+						<div class="admin-heading-1">Работа с заявкой</div>
+					</div>
+					<div class="col text-right">
+						<a href="index.html" class="btn btn-link">Вернуться назад</a>
+					</div>
+				</div>
+				<!-- // row -->
+				<!-- row -->
+				<div class="row">
+					<!-- col -->
+					<div class="col">
+						<form id="form">
+							<!-- card -->
+							<div class="card mb-4">
+								<div class="card-header">Данные о заявке</div>
+								<div class="card-body">
+									<div class="row mb-3">
+										<div class="col-md-2">
+											<strong>ID:</strong>
+										</div>
+										<div class="col">Заявка №<span id="number">1</span></div>
+										<input name="id" type="hidden" id="id">
+									</div>
+
+									<div class="row mb-3">
+										<div class="col-md-2">
+											<strong>Дата создания:</strong>
+										</div>
+										<div class="col" id="date">2020-04-20 13:52:13</div>
+									</div>
+
+									<div class="row mb-3">
+										<div class="col-md-2">
+											<strong>Продукт:</strong>
+										</div>
+										<div class="col">
+											<select id="product" name="product" class="custom-select" >
+												<option value="course-html">Курс по верстке</option>
+												<option value="course-js">
+													Курс по JavaScript
+												</option>
+												<option value="course-vue">Курс по VUE JS</option>
+												<option value="course-php">Курс по PHP</option>
+												<option value="course-wordpress">
+													Курс по WordPress
+												</option>
+											</select>
+										</div>
+									</div>
+
+									<div class="row mb-3">
+										<div class="col-md-2">
+											<strong>Имя:</strong>
+										</div>
+										<div class="col">
+											<input
+												type="text"
+												class="form-control"
+												value="Петр Сергеевич"
+												id="name"
+												name="name"
+											/>
+										</div>
+									</div>
+
+									<div class="row mb-3">
+										<div class="col-md-2">
+											<strong>Email:</strong>
+										</div>
+										<div class="col">
+											<input
+												type="text"
+												class="form-control"
+												value="info@inbox.ru"
+												id="email"
+												name="email"
+												/>
+										</div>
+									</div>
+
+									<div class="row mb-3">
+										<div class="col-md-2">
+											<strong>Телефон:</strong>
+										</div>
+										<div class="col">
+											<input
+												type="text"
+												class="form-control"
+												value="+7 (903) 555-77-55"
+												id="phone"
+												name="phone"
+												/>
+										</div>
+									</div>
+
+									<div class="row mb-3">
+										<div class="col-md-2">
+											<strong>Статус заявки:</strong>
+										</div>
+										<div class="col">
+											<select class="custom-select" id="status" name="status">
+												<option selected="">Выберите...</option>
+												<option value="new">Новая</option>
+												<option value="inwork">В работе</option>
+												<option value="complete">Завершена</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- //card -->
+							<div class="row justify-content-between">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-primary">Сохранить изменения</button>
+								</div>
+							</div>
+						</form>
+					</div>
+					<!-- //col -->
+				</div>
+				<!-- //row -->
+			</div>
+		</div>
+		<!-- // main-wrapper -->
+
+		<!-- Модель -->
+		<script src="./js/model.js"></script>
+
+		<!-- Редактирование -->
+		<script src="./js/edit/edit.view.js"></script>
+		<script src="./js/edit/edit.controller.js"></script>
+
+	</body>
+</html>
