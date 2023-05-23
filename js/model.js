@@ -7,7 +7,15 @@ export default class OrderModel {
     }
 
     getAll() {
-        return this.getFromStorage();
+        return this.orders;
+    }
+
+    getByID(id) {
+        let entries = this.orders;
+
+        let indx = entries.findIndex(item => item.id === id);
+
+        return entries[indx]
     }
 
     // --------------------------------
@@ -15,7 +23,7 @@ export default class OrderModel {
     // --------------------------------
     addOrder(inputObject) {
 
-        const { name, email, phone, product } = inputObject
+        //const { name, email, phone, product } = inputObject
 
         let id = 1;
 
@@ -25,10 +33,9 @@ export default class OrderModel {
 
         const newOrder = {
             id: id,
-            name,
-            email,
-            phone,
-            product
+            date: new Date().toLocaleDateString(),
+            status: 'new',
+            ...inputObject
         }
 
         this.orders.push(newOrder);
