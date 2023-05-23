@@ -23,4 +23,18 @@ export default class EditView {
 		this.elements.phone.value = entry.phone;
 		this.elements.status.value = entry.status;
 	}
+
+	getFromEditForm() {
+		const formData = new FormData(this.elements.form)
+
+		return {
+			id: parseInt(formData.get('id')),
+			name: formData.get('name'),
+			email: formData.get('email'),
+			phone: formData.get('phone'),
+			product: formData.get('product'),
+			status: formData.get('status')
+
+		}
+	}
 }

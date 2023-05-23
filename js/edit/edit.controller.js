@@ -21,17 +21,12 @@ function getParamURL() {
 function saveOrder(e) {
     e.preventDefault();
 
-    const formData = new FormData(editView.elements.form)
+    const updatedOrder = editView.getFromEditForm();
 
-    const updatedOrder = {
-        id: formData.get('id'),
-        name: formData.get('name'),
-        email: formData.get('email'),
-
-    }
-
-    // записали данные в модель по id
-    order.updateOrder(updatedOrder)
+    // записали данные в модель и обновили LocalStorage
+    //console.log(updatedOrder)
+    order.updateOrder(updatedOrder);
+    window.location = './table.html'
 }
 
 init();

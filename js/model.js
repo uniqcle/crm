@@ -14,6 +14,7 @@ export default class OrderModel {
         this.orders = this.getFromStorage();
     }
 
+    // получение всех заявок
     getAll() {
         return this.orders;
     }
@@ -48,6 +49,21 @@ export default class OrderModel {
         this.setToStorage();
 
         return newOrder;
+    }
+
+    //Обновление заявки (поля + обновление даты)
+    updateOrder(updatedOrder) {
+
+        let indxUpdatedOrder = this.orders.findIndex(item => item.id === updatedOrder.id)
+
+        const preparedOrder = this.prepareOrder(
+            {
+                ...updatedOrder,
+                date: new Date().toISOString()
+            })
+
+        this.orders.splice(indxUpdatedOrder, 1, preparedOrder)
+        this.setToStorage();
     }
 
     // Получение заявки из localStorage
