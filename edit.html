@@ -32,7 +32,7 @@
 					<div class="admin-heading-1">Работа с заявкой</div>
 				</div>
 				<div class="col text-right">
-					<a href="index.html" class="btn btn-link">Вернуться назад</a>
+					<a href="table.html" class="btn btn-link">Вернуться назад</a>
 				</div>
 			</div>
 			<!-- // row -->
@@ -43,10 +43,86 @@
 					<form id="form">
 						<!-- card -->
 						<div class="card mb-4">
-							<div class="card-header" id="cardHeader">Данные о заявке</div>
+							<div class="card-header">Данные о заявке</div>
+							<div class="card-body">
+								<div class="row mb-3">
+									<div class="col-md-2">
+										<strong>ID:</strong>
+									</div>
+									<div class="col">Заявка №<span id="number">1</span></div>
+									<input name="id" type="hidden" id="id">
+								</div>
 
-							
+								<div class="row mb-3">
+									<div class="col-md-2">
+										<strong>Дата создания:</strong>
+									</div>
+									<div class="col" id="date">2020-04-20 13:52:13</div>
+								</div>
 
+								<div class="row mb-3">
+									<div class="col-md-2">
+										<strong>Продукт:</strong>
+									</div>
+									<div class="col">
+										<select id="product" name="product" class="custom-select">
+											<option value="course-html">Курс по верстке</option>
+											<option value="course-js">
+												Курс по JavaScript
+											</option>
+											<option value="course-vue">Курс по VUE JS</option>
+											<option value="course-php">Курс по PHP</option>
+											<option value="course-wordpress">
+												Курс по WordPress
+											</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="row mb-3">
+									<div class="col-md-2">
+										<strong>Имя:</strong>
+									</div>
+									<div class="col">
+										<input type="text" class="form-control" value="Петр Сергеевич" id="name"
+											name="name" />
+									</div>
+								</div>
+
+								<div class="row mb-3">
+									<div class="col-md-2">
+										<strong>Email:</strong>
+									</div>
+									<div class="col">
+										<input type="text" class="form-control" value="info@inbox.ru" id="email"
+											name="email" />
+									</div>
+								</div>
+
+								<div class="row mb-3">
+									<div class="col-md-2">
+										<strong>Телефон:</strong>
+									</div>
+									<div class="col">
+										<input type="text" class="form-control" value="+7 (903) 555-77-55" id="phone"
+											name="phone" />
+									</div>
+								</div>
+
+								<div class="row mb-3">
+									<div class="col-md-2">
+										<strong>Статус заявки:</strong>
+									</div>
+									<div class="col">
+										<select class="custom-select" id="status" name="status">
+											<option selected="">Выберите...</option>
+											<option value="new">Новая</option>
+											<option value="inwork">В работе</option>
+											<option value="complete">Завершена</option>
+										</select>
+									</div>
+								</div>
+							</div>
 						</div>
 						<!-- //card -->
 						<div class="row justify-content-between">

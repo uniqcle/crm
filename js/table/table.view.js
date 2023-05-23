@@ -6,21 +6,26 @@ export default class TableView {
 
 
     renderEntry(order) {
-        console.log(order);
+
+        const badges = {
+            new: 'badge-danger',
+            inwork: 'badge-warning',
+            complete: 'badge-success'
+        }
 
         const orderHTML = `
         <tr>
             <th scope="row">${order['id']}</th>
-            <td>01.04.2020</td>
-            <td>${order['product']}</td>
-            <td>${order['name']}</td>
-            <td>${order['email']}</td>
-            <td>${order['phone']}</td>
+            <td>${order.date}</td>
+            <td>${order.productName}</td>
+            <td>${order.name}</td>
+            <td>${order.email}</td>
+            <td>${order.phone}</td>
             <td>
-                <div class="badge badge-pill badge-warning">В работе</div>
+                <div class="badge badge-pill ${badges[order.status]}">${order.statusName}</div>
             </td>
             <td>
-                <a href="edit.html">Редактировать</a>
+                <a href="edit.html?id=${order.id}">Редактировать</a>
             </td>
         </tr>
         `;

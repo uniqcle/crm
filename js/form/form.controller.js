@@ -6,23 +6,39 @@ const order = new OrderModel();
 const formView = new FormView();
 const dataTest = new TestModel();
 
-// Генерация тестовых данных
-const data = dataTest.generate();
-formView.renderForm(data)
+function init() {
+    renderTestData();
+    setupEventListeners();
+}
 
-// --------------------------------
+function setupEventListeners() {
+    formView.elements.form.addEventListener('submit', addFormData)
+}
+
+// Генерация тестовых данных
+function renderTestData() {
+    const data = dataTest.generate();
+    formView.renderForm(data)
+}
+
+
 // Добавление заявки
-// --------------------------------
-formView.elements.form.addEventListener('submit', function (e) {
+function addFormData(e) {
     e.preventDefault();
 
     // получаем данные из View и формируем объект добавления в модель
-    let inputObject = formView.formData();
+    let inputObject = formView.getFormData();
 
     // Добавляем объект в Model
     const newTask = order.addOrder(inputObject);
 
+    formView.clearForm();
+
     // Генерируем новые данные
-    const data = dataTest.generate();
-    formView.renderForm(data);
-})
+    renderTestData();
+}
+
+
+
+
+init(); 

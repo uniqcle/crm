@@ -9,7 +9,7 @@ export default class FormView {
 
     }
     // Получение данных из формы
-    formData() {
+    getFormData() {
         return {
             name: this.elements.inputName.value,
             email: this.elements.inputEmail.value,
@@ -35,5 +35,9 @@ export default class FormView {
         this.elements.productList.value = data.course;
         this.elements.productList.text = productList[data.course];
 
+    }
+
+    clearForm() {
+        this.elements.form.reset();
     }
 }

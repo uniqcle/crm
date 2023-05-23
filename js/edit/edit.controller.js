@@ -4,32 +4,46 @@ import EditView from './edit.view.js';
 const order = new OrderModel();
 const editView = new EditView();
 
-// Получаем id из адресной строки
-const paramsFromUrl = new URLSearchParams(location.search)
-const id = parseInt(paramsFromUrl.get('id'));
+function setupEventListeners() {
+    editView.elements.form.addEventListener('submit', saveOrder)
+}
 
-// Получаем необходимую запись из модели
-let entry = order.getByID(id)
+function init() {
+    setupEventListeners();
+}
 
-// Отображаем форму с заполненными данными с этой записью
-editView.renderOrder(entry);
+function getParamURL() {
+    // Получаем id из адресной строки
+    const paramsFromUrl = new URLSearchParams(location.search)
+    return parseInt(paramsFromUrl.get('id'));
+}
 
-console.log(editView.elements.name)
-
-
-editView.elements.form.addEventListener('submit', function (e) {
+function saveOrder(e) {
     e.preventDefault();
 
-    //console.log(entry)
+    const formData = new FormData(editView.elements.form)
 
-    const inputObject = {
-        name: editView.elements.name
+    const updatedOrder = {
+        id: formData.get('id'),
+        name: formData.get('name'),
+        email: formData.get('email'),
+
     }
 
-    console.log(inputObject)
+    // записали данные в модель по id
+    order.updateOrder(updatedOrder)
+}
 
-    console.log('test111')
+init();
+
+const id = getParamURL();
+
+// Получаем необходимую запись из модели и отображаем
+const entry = order.getByID(id)
+editView.renderOrder(entry);
 
 
 
-})
+
+
+
