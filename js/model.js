@@ -113,7 +113,7 @@ export default class OrderModel {
         return this.filter;
     }
 
-    // фильтрация заявок
+    // фильтрация заявок на основе фильтра
     filterOrders(filter) {
 
         // по-умолч. отображаем все заявки

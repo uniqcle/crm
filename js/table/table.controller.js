@@ -12,12 +12,18 @@ function init() {
     orders.forEach(order => {
         tableView.renderEntry(order);
     })
+
+    tableView.changeStatusBar('all');
 }
 
-// фильтрация
+// установка слушателей
 function setupEventListeners() {
     tableView.elements.productSelect.addEventListener('change', filterProduct);
     tableView.elements.topStatusBar.addEventListener('click', filterStatus);
+
+    tableView.elements.leftStatus.forEach(item => {
+        item.addEventListener('click', filterStatus);
+    })
 }
 
 // фильтрация по продукту
@@ -55,7 +61,12 @@ function filterStatus(e) {
     filteredOrders.forEach(item => {
         tableView.renderEntry(item);
     })
+
+    tableView.changeStatusBar(filter['status']);
+    tableView.changeLeftStatusBar(filter['status'])
 }
+
+
 
 init();
 

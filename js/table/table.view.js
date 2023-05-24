@@ -2,7 +2,8 @@ export default class TableView {
     elements = {
         tbody: document.querySelector('#tbody'),
         productSelect: document.querySelector('#productSelect'),
-        topStatusBar: document.querySelector('#topStatusBar')
+        topStatusBar: document.querySelector('#topStatusBar'),
+        leftStatus: document.querySelectorAll('[data-role="left-status"]')
     }
 
 
@@ -32,6 +33,28 @@ export default class TableView {
         `;
 
         this.elements.tbody.insertAdjacentHTML('beforeend', orderHTML)
+
+    }
+
+
+    changeStatusBar(filterValue) {
+
+        this.elements.topStatusBar.querySelectorAll('a').forEach(item => {
+            item.classList.remove('active')
+        });
+
+        this.elements.topStatusBar.querySelector(`[data-value="${filterValue}"]`).classList.add('active')
+    }
+
+
+    changeLeftStatusBar(filterValue) {
+
+        this.elements.leftStatus.forEach(item => {
+            item.classList.remove('active')
+
+        });
+
+        document.querySelector(`[data-value="${filterValue}"]`).classList.add('active')
 
     }
 
