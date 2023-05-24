@@ -1,7 +1,8 @@
 export default class TableView {
     elements = {
         tbody: document.querySelector('#tbody'),
-
+        productSelect: document.querySelector('#productSelect'),
+        topStatusBar: document.querySelector('#topStatusBar')
     }
 
 
@@ -15,7 +16,7 @@ export default class TableView {
 
         const orderHTML = `
         <tr>
-            <th scope="row">${order['id']}</th>
+            <th scope="row" data-id=${order.id}>${order.id}</th>
             <td>${order.date}</td>
             <td>${order.productName}</td>
             <td>${order.name}</td>
@@ -33,4 +34,5 @@ export default class TableView {
         this.elements.tbody.insertAdjacentHTML('beforeend', orderHTML)
 
     }
+
 }

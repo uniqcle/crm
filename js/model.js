@@ -10,6 +10,12 @@ export default class OrderModel {
         'course-wordpress': 'Курс по WordPress'
     }
 
+    // назначаем объект фильтр 
+    filter = {
+        'product': 'all',
+        'status': 'all'
+    }
+
     constructor() {
         this.orders = this.getFromStorage();
     }
@@ -99,6 +105,35 @@ export default class OrderModel {
             productName: this.productList[order.product],
             statusName: statusLabels[order.status]
         }
+    }
+
+    //изменяем фильтр
+    changeFilter(type, value) {
+        this.filter[type] = value;
+        return this.filter;
+    }
+
+    // фильтрация заявок
+    filterOrders(filter) {
+
+        // по-умолч. отображаем все заявки
+        let filteredOrders = this.orders;
+
+        // если селект product изменент
+        if (filter['product'] !== 'all') {
+            filteredOrders = this.orders.filter(order => {
+                return order.product === filter['product']
+            })
+        }
+
+        // если селект статус изменен
+        if (filter['status'] !== 'all') {
+            filteredOrders = filteredOrders.filter(order => {
+                return order.status === filter['status']
+            })
+        }
+
+        return filteredOrders;
     }
 
 }
