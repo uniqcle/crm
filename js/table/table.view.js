@@ -3,10 +3,11 @@ export default class TableView {
         tbody: document.querySelector('#tbody'),
         productSelect: document.querySelector('#productSelect'),
         topStatusBar: document.querySelector('#topStatusBar'),
-        leftStatus: document.querySelectorAll('[data-role="left-status"]')
+        leftStatus: document.querySelectorAll('[data-role="left-status"]'),
+        badgeNew: document.querySelector('#badge-new')
     }
 
-
+    // отображение заявки
     renderEntry(order) {
 
         const badges = {
@@ -36,26 +37,43 @@ export default class TableView {
 
     }
 
+    // обновление фильтров
+    updateFilter(filter) {
+        //console.log(filter)
 
+        // по продукту
+        this.elements.productSelect.value = filter.product;
+
+        // по статусам
+        this.changeStatusBar(filter.status);
+
+        // по левой панели
+        this.changeLeftStatusBar(filter.status)
+    }
+
+    // обновление статуса
     changeStatusBar(filterValue) {
 
         this.elements.topStatusBar.querySelectorAll('a').forEach(item => {
             item.classList.remove('active')
         });
-
         this.elements.topStatusBar.querySelector(`[data-value="${filterValue}"]`).classList.add('active')
     }
 
-
+    // обновление статуса в сайдбар
     changeLeftStatusBar(filterValue) {
 
         this.elements.leftStatus.forEach(item => {
             item.classList.remove('active')
 
         });
-
         document.querySelector(`[data-value="${filterValue}"]`).classList.add('active')
 
+    }
+
+    // отображение заявок
+    showCountNewOrders(newOrdersCount) {
+        this.elements.badgeNew.textContent = newOrdersCount;
     }
 
 }

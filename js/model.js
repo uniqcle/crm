@@ -1,4 +1,5 @@
 const LOCAL_STORAGE_KEY = 'tasks';
+const LOCAL_STORAGE_FILTER_KEY = 'filter';
 
 export default class OrderModel {
 
@@ -11,18 +12,10 @@ export default class OrderModel {
     }
 
     // назначаем объект фильтр 
-    filter = {
-        'product': 'all',
-        'status': 'all'
-    }
+    filter = this.getFromStorageFilter();
 
     constructor() {
         this.orders = this.getFromStorage();
-    }
-
-    // получение всех заявок
-    getAll() {
-        return this.orders;
     }
 
     // Получение заявки по id
@@ -34,10 +27,13 @@ export default class OrderModel {
         return entries[indx]
     }
 
+    // Получить кол-во новых заявки
+    getCountNewOrders() {
+        return this.orders.filter(item => item.status === 'new').length
+    }
+
     // Добавление заявки в модель
     addOrder(inputObject) {
-
-        //const { name, email, phone, product } = inputObject
 
         let id = (this.orders.length > 0) ? this.orders[this.orders.length - 1].id + 1 : 1;
 
@@ -89,6 +85,27 @@ export default class OrderModel {
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(this.orders))
     }
 
+    // получаем из localStorage фильтр
+    getFromStorageFilter() {
+        let filter = {
+            'product': 'all',
+            'status': 'all',
+        }
+
+        let filterFromStorage = JSON.parse(localStorage.getItem(LOCAL_STORAGE_FILTER_KEY));
+
+        if (filterFromStorage) {
+            return filterFromStorage
+        }
+
+        return filter;
+    }
+
+    // устанавливаем в localStorage фильтр
+    setToStorageFilter() {
+        localStorage.setItem(LOCAL_STORAGE_FILTER_KEY, JSON.stringify(this.filter));
+    }
+
     // форматирование заявки 
     prepareOrder(order) {
 
@@ -107,9 +124,16 @@ export default class OrderModel {
         }
     }
 
+    getFilter() {
+        return this.filter;
+    }
+
     //изменяем фильтр
     changeFilter(type, value) {
+
         this.filter[type] = value;
+        this.setToStorageFilter();
+
         return this.filter;
     }
 

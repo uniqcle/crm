@@ -7,13 +7,21 @@ const tableView = new TableView();
 function init() {
     setupEventListeners()
 
-    const orders = order.getAll();
+    // отображаем заявки. Если есть в localStorage фильтры,
+    // то предварительно прогоняем через фильтры
+    const filter = order.getFilter();
+    const filteredOrders = order.filterOrders(filter)
 
-    orders.forEach(order => {
+    filteredOrders.forEach(order => {
         tableView.renderEntry(order);
     })
 
-    tableView.changeStatusBar('all');
+    // кол-во новых заявок
+    const newOrdersCount = order.getCountNewOrders();
+
+    // передаем все данные для отображения
+    tableView.updateFilter(filter);
+    tableView.showCountNewOrders(newOrdersCount);
 }
 
 // установка слушателей
@@ -62,6 +70,7 @@ function filterStatus(e) {
         tableView.renderEntry(item);
     })
 
+    // обновление
     tableView.changeStatusBar(filter['status']);
     tableView.changeLeftStatusBar(filter['status'])
 }
