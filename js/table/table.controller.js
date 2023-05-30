@@ -12,9 +12,12 @@ function init() {
     const filter = order.getFilter();
     const filteredOrders = order.filterOrders(filter)
 
-    filteredOrders.forEach(order => {
-        tableView.renderEntry(order);
-    })
+    // filteredOrders.forEach(order => {
+    //     tableView.renderEntry(order);
+    // })
+
+    handlePaginationOrders(filteredOrders)
+
 
     // кол-во новых заявок
     const newOrdersCount = order.getCountNewOrders();
@@ -46,9 +49,11 @@ function filterProduct(e) {
     const filteredOrders = order.filterOrders(filter)
 
     // отображаем отфильтр. заявки
-    filteredOrders.forEach(item => {
-        tableView.renderEntry(item);
-    })
+    // filteredOrders.forEach(item => {
+    //     tableView.renderEntry(item);
+    // })
+
+    handlePaginationOrders(filteredOrders)
 
 }
 
@@ -66,13 +71,32 @@ function filterStatus(e) {
     const filteredOrders = order.filterOrders(filter);
 
     // отображаем отфильтр. заявки
-    filteredOrders.forEach(item => {
-        tableView.renderEntry(item);
-    })
+    // filteredOrders.forEach(item => {
+    //     tableView.renderEntry(item);
+    // })
+
+    handlePaginationOrders(filteredOrders)
 
     // обновление
     tableView.changeStatusBar(filter['status']);
     tableView.changeLeftStatusBar(filter['status'])
+}
+
+// пагинация отсортированных заявок
+function handlePaginationOrders(filteredOrders) {
+    tableView.elements.pagination.innerHTML = '';
+
+    // высчитывает кол-во страниц пагинации и отрисовываем
+    tableView.paginationNumbPage(filteredOrders)
+    const btns = tableView.elements.pagination.querySelectorAll('button')
+
+    // при клике на кнопку отрисовываем необходимые спиоск записей
+    for (let btn of btns) {
+        btn.addEventListener('click', function () {
+            tableView.showPaginationPage(btn, filteredOrders)
+            tableView.togglePaginationActiveClass(btn)
+        })
+    }
 }
 
 

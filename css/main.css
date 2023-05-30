@@ -799,3 +799,14 @@ body.with-nav .left-panel {
 	overflow-x: hidden;
 	overflow-y: auto;
 }
+
+.active{
+	background-color: #2865b1;
+	color: white; 
+}
+
+#pagination button{
+	margin-right: 5px; 
+	padding: 5px 10px; 
+	border: 1px solid black; 
+}
